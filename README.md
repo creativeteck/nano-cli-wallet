@@ -1,4 +1,4 @@
-[Nano](https://nano.org/) is a fee-less, fast cryptocurrency. This is a command line Nano wallet using node.js.
+[Nano](https://nano.org/) is a fee-less, fast cryptocurrency. nanon-cli-wallet is a headless nano wallet created using node.js. You can use it to create a wallet, send the nano to another address, and recieve funds.
 
 # Install
 ```

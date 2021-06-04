@@ -11,6 +11,8 @@ function main() {
   help_str += "    cat seed.txt | node wallet.js balance\n";
   help_str += "4). Send 1 raw nano to another address:\n";
   help_str += "    cat seed.txt | node wallet.js send <second_wallet_address> 1";
+  help_str += "5). Show private key if you want import to other wallet software:\n";
+  help_str += "    cat seed.txt | node wallet.js privatekey";
 
   var myArgs = process.argv.slice(2);
   if (myArgs.length == 0) {
@@ -25,6 +27,7 @@ function main() {
     case 'address':
     case 'balance':
     case 'send':
+    case 'privatekey':
       const stdin = process.stdin;
       var data = '';
       stdin.on('data', function (chunk) {
@@ -35,10 +38,12 @@ function main() {
         if (myArgs[0] == 'address') {
           return show_address(seed);
         }
+        if (myArgs[0] == 'privatekey') {
+          return show_privatekey(seed);
+        }
         if (myArgs[0] == 'balance') {
           return check_balance(seed);
         }
-
         if (myArgs[0] == 'send') {
           if (myArgs.length < 3) {
             console.log('help');
@@ -57,6 +62,11 @@ function main() {
 function show_address(seed) {
   var keys = get_keys_from_seed(seed);
   console.log(keys.address);
+}
+
+function show_privatekey(seed) {
+  var keys = get_keys_from_seed(seed);
+  console.log(keys.private_key);
 }
 
 async function check_balance(seed) {
