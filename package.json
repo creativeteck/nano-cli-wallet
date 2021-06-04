@@ -1,0 +1,15 @@
+{
+  "name": "nano-cli-wallet",
+  "version": "1.0.0",
+  "description": "nano command line wallet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "nanocurrency": "^2.5.0"
+  }
+}
