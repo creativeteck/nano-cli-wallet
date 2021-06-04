@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "config": "^3.3.6",
     "nanocurrency": "^2.5.0"
   }
 }

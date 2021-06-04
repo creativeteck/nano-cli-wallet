@@ -1,0 +1,7 @@
+{
+    "node_url" : "https://proxy.powernode.cc/proxy",
+    "representive": "nano_18shbirtzhmkf7166h39nowj9c9zrpufeg75bkbyoobqwf1iu3srfm9eo3pz",
+    "send_work_threshold": "fffffff800000000",
+    "change_work_threshold": "fffffff800000000",
+    "receive_work_threshold": "fffffe0000000000"
+}
