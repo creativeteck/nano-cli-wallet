@@ -1,40 +1,39 @@
-A simple nano cryptocurrency command line based wallet
+[Nano](https://nano.org/) is a fee-less, high efficent cryptocurrency. This is a command line Nano wallet using node.js.
 
 # Install
 ```
 npm install
 ```
-
-# Create a new wallet and save the seed to seed.txt
+# How to use
+* Create a new wallet and save the seed to seed.txt
 ```
 node wallet.js new > seed.txt
 ```
 
-# Show the address of the wallet just created
+* Show the address of the wallet just created
 ```
 cat seed.txt | node wallet.js address
 ```
 
-# Use above address to get free nano from [faucet](https://nano-faucet.org/) or [play game](https://luckynano.com/)  
+* Use above address to get free nano from [faucet](https://nano-faucet.org/) or [play game](https://luckynano.com/)  
 If you check the address at [Nano crawler](https://nanocrawler.cc/), the account has not open
-
-# Check the balance which will also create receive blocks for pending transactions
+* Check the balance which will also create receive blocks for pending transactions
 ```
 cat seed.txt | node wallet.js balance
 ```
 Now you can see the balance at [Nano crawler](https://nanocrawler.cc/).
 
-# Create another wallet to receive the nano from the first wallet
+* Create another wallet to receive the nano from the first wallet
 ```
 node wallet.js new > seed1.txt
 cat seed1.txt | node wallet.js address
 ```
 
-# Transfer 1 raw nano from the first wallet to the second one
+* Transfer 1 raw nano from the first wallet to the second one
 ```
 cat seed.txt | node wallet.js send <second_wallet_address> 1
 ```
-# Check the balance of second wallet to create receive blocks
+* Check the balance of second wallet to create receive blocks
 ```
 cat seed1.txt | node wallet.js balance
 ```
