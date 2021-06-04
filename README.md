@@ -1,4 +1,4 @@
-[Nano](https://nano.org/) is a fee-less, high efficent cryptocurrency. This is a command line Nano wallet using node.js.
+[Nano](https://nano.org/) is a fee-less, fast cryptocurrency. This is a command line Nano wallet using node.js.
 
 # Install
 ```
@@ -14,13 +14,13 @@ node wallet.js new > seed.txt
 ```
 cat seed.txt | node wallet.js address
 ```
-xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns
+  *xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns*
 
 * Check the balance will give the error as the account has not been opened yet
 ```
 cat seed.txt | node wallet.js balance
 ```
-The account xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns has not been opened yet. Please send some nano to it first.
+  *The account xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns has not been opened yet. Please send some nano to it first.*
 
 * Send some nano to the address from [faucet](https://nano-faucet.org/) or [the faucet game](https://luckynano.com/).  
 
@@ -28,8 +28,7 @@ The account xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns has
 ```
 cat seed.txt | node wallet.js balance
 ```
-flush pending receive for xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns. Now balance is 1
-The account xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns balance is 1
+  *flush pending receive for xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns. Now balance is 1. The account xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns balance is 1*
 
 * You can also check the balance at [Nano crawler](https://nanocrawler.cc/).
 
@@ -51,4 +50,5 @@ cat seed1.txt | node wallet.js balance
 # Donation
 
 Send some nano to nano_1aipxhoq65mrdrk9yzrb7kp6ah9qz5iedhse5uk4expworbkfbtmwskb7xkg
+![Alt text](/config/qr_code.png?raw=true "nano_1aipxhoq65mrdrk9yzrb7kp6ah9qz5iedhse5uk4expworbkfbtmwskb7xkg")
 
