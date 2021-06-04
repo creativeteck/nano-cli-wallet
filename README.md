@@ -14,14 +14,24 @@ node wallet.js new > seed.txt
 ```
 cat seed.txt | node wallet.js address
 ```
+xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns
 
-* Use above address to get free nano from [faucet](https://nano-faucet.org/) or [play game](https://luckynano.com/)  
-If you check the address at [Nano crawler](https://nanocrawler.cc/), the account has not open
-* Check the balance which will also create receive blocks for pending transactions
+* Check the balance will give the error as the account has not been opened yet
 ```
 cat seed.txt | node wallet.js balance
 ```
-Now you can see the balance at [Nano crawler](https://nanocrawler.cc/).
+The account xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns has not been opened yet. Please send some nano to it first.
+
+* Send some nano to the address from [faucet](https://nano-faucet.org/) or [the faucet game](https://luckynano.com/).  
+
+* Check the balance again. It will create receive blocks for pending transactions
+```
+cat seed.txt | node wallet.js balance
+```
+flush pending receive for xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns. Now balance is 1
+The account xrb_14w1astamck71wkfrcuumi1xyewpmomqxb6spiom64odi91um9ifcsjej4ns balance is 1
+
+* You can also check the balance at [Nano crawler](https://nanocrawler.cc/).
 
 * Create another wallet to receive the nano from the first wallet
 ```
@@ -33,6 +43,7 @@ cat seed1.txt | node wallet.js address
 ```
 cat seed.txt | node wallet.js send <second_wallet_address> 1
 ```
+
 * Check the balance of second wallet to create receive blocks
 ```
 cat seed1.txt | node wallet.js balance
