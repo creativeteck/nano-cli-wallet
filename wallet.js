@@ -70,7 +70,7 @@ function show_privatekey(seed) {
 }
 
 async function check_balance(seed) {
-  const previous = "0000000000000000000000000000000000000000000000000000000000000000";
+  var previous = "0000000000000000000000000000000000000000000000000000000000000000";
   var address = get_keys_from_seed(seed);
   var request_data = { action: "account_info", account: address.address, representative: "true" };
   var response = await axios.post(config.node_url, request_data);
@@ -88,48 +88,48 @@ async function check_balance(seed) {
     is_new_account = true;
   }
 
-  while (true) {
-    //(1) get pending
-    request_data = { action: "pending", account: address.address, include_only_confirmed: "true", source: "true" };
-    response = await axios.post(config.node_url, request_data);
-    const blocks = response.data.blocks;
+  //(1) get pending
+  request_data = { action: "pending", account: address.address, include_only_confirmed: "true", source: "true" };
+  response = await axios.post(config.node_url, request_data);
+  const blocks = response.data.blocks;
 
-    // No pending blocks
-    if (blocks == '') {
-      if (is_new_account && balance == 0) {
-        console.log("The account " + address.address + " has not been opened yet. Please send some nano to it first.");
-      } else {
-        console.log("The account " + address.address + " balance is " + balance);
-      }
-      return;
+  // No pending blocks
+  if (blocks == '') {
+    if (is_new_account && balance == 0) {
+      console.log("The account " + address.address + " has not been opened yet. Please send some nano to it first.");
+    } else {
+      console.log("The account " + address.address + " balance is " + balance);
     }
-
-    var block_hash = Object.keys(blocks)[0];
-    balance += BigInt(blocks[block_hash].amount);
-    // convert to string
-    balance = balance.toString();
-    // console.log(balance);
-
-    //(2) generate work
-    request_data = { action: "work_generate", difficulty: config.receive_work_threshold, hash: work_hash };
-    response = await axios.post(config.node_url, request_data);
-
-    // (3) create block
-    const block = nanocurrency.createBlock(address.private_key, {
-      balance: balance,
-      link: block_hash,
-      previous: previous,
-      representative: config.representive,
-      work: response.data.work,
-    });
-
-    //(4) process work
-    request_data = { action: "process", json_block: "true", subtype: "receive", "block": block.block };
-    //console.log(request_data);
-    response = await axios.post(config.node_url, request_data);
-    //console.log(response.data)
-    console.log("flush pending receive for " + address.address + ". Now balance is " + balance);
+    return;
   }
+
+  var block_hash = Object.keys(blocks)[0];
+  balance += BigInt(blocks[block_hash].amount);
+  // convert to string
+  //balance = balance.toString();
+  // console.log(balance);
+
+  //(2) generate work
+  request_data = { action: "work_generate", difficulty: config.receive_work_threshold, hash: work_hash };
+  response = await axios.post(config.node_url, request_data);
+
+  // (3) create block
+  const block = nanocurrency.createBlock(address.private_key, {
+    balance: balance.toString(),
+    link: block_hash,
+    previous: previous,
+    representative: config.representive,
+    work: response.data.work,
+  });
+
+  //(4) process work
+  request_data = { action: "process", json_block: "true", subtype: "receive", "block": block.block };
+  //console.log(request_data);
+  response = await axios.post(config.node_url, request_data);
+  //console.log(response.data)
+  console.log("flush pending receive for " + address.address + ". Now balance is " + balance);
+
+  check_balance(seed); //flush more out
 }
 
 async function send_to(seed, to_address, amount) {
